@@ -23,9 +23,9 @@ function renderSlideshowImage(currentSlideshowImageIndex) {
     //     slideshowElement.style.backgroundImage = "url('./pictures/Chicago Cityline.jpg')";
     // } else if (currentSlideshowImageIndex == 3) {}
     // slideshowElement.style.backgroundImage = "url('./pictures/Ferris Wheel.jpg')";
-    slideshowElement.style.backgroundImage = "url('" + currentImagePath +"')";
-    // slideshowElement.style.backgroundImage = url('+slideshowImages[currentSlideshowImageIndex++]+');
 
+    slideshowElement.style.backgroundImage = "url('" + currentImagePath +"')";
+    
     const isLastPhoto = currentSlideshowImageIndex === slideshowImages.length - 1;
     currentSlideshowImageIndex = isLastPhoto ? 0 : currentSlideshowImageIndex + 1;
 }

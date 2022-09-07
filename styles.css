@@ -43,7 +43,7 @@ p {
     margin-right: 15px;
 }
 #topOfPage {
-    background-image: url("./pictures/Wispy Cloud Sunset.jpg");
+    background-image: url("./pictures/20.jpg");
     padding: 0px;
     margin: 0px;
 }
@@ -73,4 +73,5 @@ p {
     border: solid;
     justify-content: center;
     background-size: cover;
+    margin: 0 auto;
 }
