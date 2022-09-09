@@ -1,48 +1,186 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 
 <body>
-    <div id="linksLine">
-        <a id="pageLinks" href="index.html">
-            HOME
-        </a>
-        <a id="pageLinks" href="projects.html">
-            PROJECTS
-        </a>
-        <a id="pageLinks" href="photography.html">
-            PHOTOGRAPHY
-        </a>
-        <a id="pageLinks" href="baking.html">
-            BAKING
-        </a>
+    <div id="linksLine" class="position-absolute top-0 end-0">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a id="pageLinks" class="dropdown-item" href="index.html">
+                        HOME
+                    </a>
+                </li>
+                <li>
+                    <a id="pageLinks" class="dropdown-item" href="projects.html">
+                        PROJECTS
+                    </a>
+                </li>
+                <li>
+                    <a id="pageLinks" class="dropdown-item" href="photography.html">
+                        PHOTOGRAPHY
+                    </a>
+                </li>
+                <li>
+                    <a id="pageLinks" class="dropdown-item" href="baking.html">
+                        BAKING
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
     <div id="topOfPage">
-        <h1 id="pageTitle">
-            Life in a Photograph
+        <h1 id="photographyPageTitle">
+            Life
         </h1>
-        <div id="firstImpression">
-
-            <p id="bighook">
-                The world is filled with<br> wonders, and photos are a way to<br> keep a part of it with you.
-            </p>
-            <img id="circleImage" src="./images/Camera.jpg">
-            
+        <h1 id="photographyPageTitle2">
+            in a<br>Photograph
+        </h1>
+        <div id="firstImpression" class="container text-center">
+            <div class="row">
+                <div id="photographyImage" class="col-4">
+                    <img id="circleImage" src="./images/Camera.jpg">
+                </div>
+                <div id="photographyTextBlock" class="col-4">
+                    <h6 id="imageText">
+                        I take pictures<br>of dazzling views because then
+                    </h6>
+                    <div id="imageTextBotDiv">
+                        <h6 id="imageTextBig">
+                            their beauty will be immortalized
+                        </h6>
+                        <h6 id="imageTextBot">
+                            inside my photographs
+                        </h6>
+                    </div>
+                </div>
+            </div>
         </div>
-        
+    </div>
+    <div>
+        <h6 id="slideshowText">
+            These are some of my favorite photos.
+        </h6>
         <div id="slideshow"></div>
-        
+        <h1 id="photoTalk">
+            But if you're talking<br>about specific places...
+        </h1>
+        <div id="zooFrame" class="container text-center">
+            <div class="row">
+                <div id="zooBlock" class="col-4">
+                    <h2 id="indexTitle">
+                        The Woodland Zoo
+                    </h2>
+                    <h6 id="indexCaption">
+                        Seattle, WA
+                    </h6>
+                    <h4 id="indexLetter">
+                        I went to the Woodland Zoo in August 2022 and saw all the animals there.
+                        I think my favorite ones are the monkeys and birds. It was cool to see them
+                        look at me as if I was the sight to behold and not them. I guess they don't
+                        see a big camera making faint clicking sounds all too often.
+                    </h4>
+                </div>
+                <div class="col-4">
+                    <div id="smallSlideshow"></div>
+                </div>
+            </div>
+        </div>
+        <div id="japanFrame" class="container text-center">
+            <div class="row">
+                <div class="col-4">
+                    <div id="smallSlideshowJapan"></div>
+                </div>
+                <div id="japanBlock" class="col-4">
+                    <h2 id="indexTitle">
+                        Japan
+                    </h2>
+                    <h6 id="indexCaption">
+                        Tokyo and Kyoto, Japan
+                    </h6>
+                    <h4 id="indexLetter">
+                        I visited Japan in July of 2019, and spent most of my time in and around Tokyo, 
+                        but I also took a day trip to Kyoto as well. The country is
+                        quite clean, though transportation is limited to the subway, since taxi fares
+                        are too expensive to take. Most of the time, I just walked everywhere, which
+                        led to my feet being sore for nearly all of my time there. All in all, though,
+                        Japan is an immensely beautiful place to visit, and I'd like to go again soon.
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div id="purdueFrame" class="container text-center">
+            <div class="row">
+                <div id="purdueBlock" class="col-4">
+                    <h2 id="indexTitle">
+                        Purdue University
+                    </h2>
+                    <h6 id="indexCaption">
+                        West Lafayette, IN
+                    </h6>
+                    <h4 id="indexLetter">
+                        I attended Purdue University from 2018-2022 (though half the time I had to stay
+                        home due to "The Bad Thing" that happened). I made a lot of friends, learned a lot
+                        of things, and did a lot of new things. College is truly the time to spread your
+                        wings and try new things. It's full of ups and downs, but at least I came 
+                        out of it with a degree!
+                    </h4>
+                </div>
+                <div class="col-4">
+                    <div id="smallSlideshowPurdue"></div>
+                </div>
+            </div>
+        </div>
+        <div id="chicagoFrame" class="container text-center">
+            <div class="row">
+                <div class="col-4">
+                    <div id="smallSlideshowChicago"></div>
+                </div>
+                <div id="chicagoBlock" class="col-4">
+                    <h2 id="indexTitle">
+                        Chicago
+                    </h2>
+                    <h6 id="indexCaption">
+                        Chicago, IL
+                    </h6>
+                    <h4 id="indexLetter">
+                        I actually visited Chicago twice during my time in Purdue: once in
+                        August 2018 and once in January 2022, which are arguably the worst times for
+                        me to EVER visit this city. January makes sense, since they don't call Chicago
+                        "The Windy City" for no reason. Yet, for some reason, for the August I was there,
+                        it was sweltering hot and without a single wisp of wind. Very nice architecture,
+                        though.
+                    </h4>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="content">
-        <h3>
-            sdfs
+    <div>
+        <h3 id="contactTitle" class="display-3">
+            We should really talk more often
         </h3>
-        <p>
-            This is a paragraph.
-        </p>
+        <h4 id="contactUpperBody">
+            Contact me at:
+        </h4>
+        <h6 id="contactLowerBody" class="display-6">
+            Email: JacquieLYu@gmail.com
+        </h6>
+        <h4 id="contactUpperBody">
+            Spot me at:
+        </h4>
+        <h6 id="contactLowerBody" class="display-6">
+            Instagram: instagram.com/yu_bake<br>
+            Github: github.com/JacquieLeeYu
+        </h6>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="index.js"></script>
 </body>
 

@@ -1,43 +1,148 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     </head>
     
     <body>
-        <div id="linksLine">
-            <a id="pageLinks" href="index.html">
-                HOME
-            </a>
-            <a id="pageLinks" href="projects.html">
-                PROJECTS
-            </a>
-            <a id="pageLinks" href="photography.html">
-                PHOTOGRAPHY
-            </a>
-            <a id="pageLinks" href="baking.html">
-                BAKING
-            </a>
+        <div id="linksLine" class="position-absolute top-0 end-0">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a id="pageLinks" class="dropdown-item" href="index.html">
+                            HOME
+                        </a>
+                    </li>
+                    <li>
+                        <a id="pageLinks" class="dropdown-item" href="projects.html">
+                            PROJECTS
+                        </a>
+                    </li>
+                    <li>
+                        <a id="pageLinks" class="dropdown-item" href="photography.html">
+                            PHOTOGRAPHY
+                        </a>
+                    </li>
+                    <li>
+                        <a id="pageLinks" class="dropdown-item" href="baking.html">
+                            BAKING
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div id="topOfPage">
-            <h1 id="pageTitle">
-                WELCOME TO JACQUIE
+            <h1 id="homePageTitle">
+                Hey there.
             </h1>
-            <h2>
+            <h1 id="homePageTitle2">
+                It's me,
+            </h1>
+            <h1 id="homePageTitle3">
+                Jacquie.
+            </h1>
+            <!-- <h2>
                 <h4 id="clock">
                     The Current Time is: <br> 
                     <span id="time"></span>
                 </h4>
-            </h2>
+            </h2> -->
         </div>
-        <div id="content">
-            <h3>
-                About Me
+        <div>
+            <h3 id="bubbleTalk">
+                It's been a while <br>since we last talked, so <br>let's catch up.
             </h3>
-            <p>
-                This is a paragraph.
-            </p>
         </div>
+        <div id="projectsFrame" class="container text-center">
+            <div class="row">
+                <div id="projectsBlock" class="col-4">
+                    <h2 id="indexTitle">
+                        <a href="projects.html">
+                            Projects
+                        </a>
+                    </h2>
+                    <h4 id="indexLetter">
+                        I made a lot of projets <br>while you were gone. <br>I think they're pretty cool.
+                    </h4>
+                </div>
+                <div class="col-4">
+                    <a href="projects.html">
+                        <img id="projectsImage" src="./images/Project Image.jpg">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="photographyFrame" class="container text-center">
+            <div class="row">
+                <div class="col-4">
+                    <a href="photography.html">
+                        <img id="photographyImage" src="./images/Photography Image.jpg">
+                    </a>
+                </div>
+                <div id="photographyBlock" class="col-4">
+                    <h2 id="indexTitle">
+                        <a href="photography.html">
+                            Photography
+                        </a>
+                    </h2>
+                    <h4 id="indexLetter">
+                        I also visited a lot of <br>places, saw a lot of sights, and took a lot of pictures.
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div id="bakingFrame" class="container text-center">
+            <div class="row">
+                <div id="bakingBlock" class="col-4">
+                    <h2 id="indexTitle">
+                        <a href="baking.html">
+                            Baking
+                        </a>
+                    </h2>
+                    <h4 id="indexLetter">
+                        I even did some baking! <br>Cooking is really fun, and <br>seeing people enjoy my food <br>is super satisfying, too!
+                    </h4>
+                </div>
+                <div class="col-4">
+                    <a href="baking.html">
+                        <img id="bakingImage" src="./images/Baking Image.jpg">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3 id="contactTitle" class="display-3">
+                We should really talk more often
+            </h3>
+            <h4 id="contactUpperBody">
+                Contact me at:
+            </h4>
+            <h6 id="contactLowerBody" class="display-6">
+                Email: JacquieLYu@gmail.com
+            </h6>
+            <h4 id="contactUpperBody">
+                Spot me at:
+            </h4>
+            <h6 id="contactLowerBody" class="display-6">
+                Instagram: instagram.com/yu_bake<br>
+                Github: github.com/JacquieLeeYu
+            </h6>
+        </div>
+        <div id="botPage">
+            <h6 id="credits" class="display-6">
+                Photos on this page credited to:<br>
+                <a id="credits" href="https://www.vecteezy.com/free-vector/camera">Camera Vectors by Vecteezy</a><br>
+                <a id="credits" href="https://www.vecteezy.com/free-vector/programming">Programming Vectors by Vecteezy</a><br>
+                <a id="credits" href="https://www.vecteezy.com/free-vector/slice-of-cake">Slice of Cake Vectors by Vecteezy</a>
+
+            </h6>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
         <script src="index.js"></script>
     </body>
     
