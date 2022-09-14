@@ -47,6 +47,8 @@ p {
     padding: 0vw;
 }
 
+/* In multiple pages ---------------------------------------------------------------------------------- */
+
 #linksLine {
     margin-right: 1vw;
     margin-top: 1vw;
@@ -72,6 +74,9 @@ p {
     padding-top: 20vw;
     font-size: 5vw;
 }
+
+/* Index Page ------------------------------------------------------------------------------------ */
+
 #clock {
     padding-top: 30vw;
     font-size: 2.5vw;
@@ -113,27 +118,21 @@ p {
 #homePageTitle {
     margin: 2vw auto 4vw 5vw;
     font-size: 9vw;
-    font-family: 'Courier New', Courier, monospace;
 }
 #homePageTitle2 {
     margin: 5vw auto 0vw 2.5vw;
-    /* border: 2vw solid black; */
     font-size: 7vw;
-    font-family: 'Courier New', Courier, monospace;
 }
 #homePageTitle3 {
     margin: 0vw 3vw 2vw 0vw;
-    /* border: 2vw solid black; */
     font-size: 15vw;
     justify-content: end;
     text-align: right;
-    font-family: 'Courier New', Courier, monospace;
 }
 #bubbleTalk {
     margin: 20vw auto 20vw auto;
     text-align: center;
     font-size: 4vw;
-    font-family: 'Courier New', Courier, monospace;
 }
 #projectsFrame {
     margin: 20vw 1vw 20vw 1vw;
@@ -223,6 +222,9 @@ p {
     color: beige;
     font-size: 1vw;
 }
+
+/* Photography Page ---------------------------------------------------------------------------------- */
+
 #photographyPageTitle {
     margin: 2vw auto 0vw 10vw;
     display: inline-flex;
@@ -275,44 +277,55 @@ p {
 }
 #japanFrame {
     padding-right: 0vw;
-    margin: 230vw 40vw 200vw 40vw;
+    margin: 20vw 4vw 15vw 4vw;
 }
 #japanBlock {
-    margin: 85vw 0vw 40vw 420vw;
+    margin: 0vw 0vw 4vw 27vw;
     float: right;
 }
 #smallSlideshowJapan {
     border: solid;
-    margin: 170vw 400vw 5vw 10vw;
-    width: 800vw;
-    height: 500vw;
+    margin: 5vw auto auto 1vw;
+    height: 30vw;
+    width: 48vw;
     background-size: cover;
 }
 #purdueFrame {
-    margin: 200vw auto 200vw auto;
+    margin: 10vw auto 20vw auto;
 }
 #purdueBlock {
-    margin: 85vw 0vw auto 20vw;
+    margin: 0vw 0vw auto 2vw;
 }
 #smallSlideshowPurdue {
     border: solid;
-    margin: 100vw auto auto 90vw;
-    width: 800vw;
-    height: 500vw;
+    margin: 3vw auto auto 9vw;
+    height: 30vw;
+    width: 48vw;
     background-size: cover;
 }
 #chicagoFrame {
     /* border:solid; */
-    margin: 100vw 40vw 10vw 40vw;
+    margin: 10vw 4vw 18vw 4vw;
 }
 #chicagoBlock {
     display: inline-block;
-    margin: 85vw 0vw 40vw 440vw;
+    margin: 0vw 0vw 4vw 27vw;
 }
 #smallSlideshowChicago {
     border: solid;
-    margin: 125vw 50vw 5vw 20vw;
-    width: 800vw;
-    height: 500vw;
+    margin: 3vw auto auto 1vw;
+    height: 30vw;
+    width: 48vw;
     background-size: cover;
+}
+
+/* Projects Page ----------------------------------------------------------------------------- */
+#projectsPageTitle {
+    margin: 2vw auto 1vw 5vw;
+    font-size: 10vw;
+}
+#projectsPageTitle2 {
+    margin: 0vw auto 0vw 20vw;
+    text-align: center;
+    font-size: 14vw;
 }
