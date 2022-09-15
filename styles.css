@@ -31,6 +31,9 @@ h3 {
 h6 {
     font-family: 'Courier New', Courier, monospace;
 }
+button {
+    border: none;
+}
 a:link {
     color: black;
     background-color: transparent;
@@ -74,6 +77,20 @@ p {
     padding-top: 20vw;
     font-size: 5vw;
 }
+#smallPrev {
+    color: rgba(244, 244, 244, .9);
+    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 1.5vw;
+    padding: 0vw .5vw .5vw .5vw;
+    float: left;
+}
+#smallNext {
+    color: rgba(244, 244, 244, .9);
+    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 1.5vw;
+    float: right;
+    padding: 0vw .5vw .5vw .5vw;
+}
 
 /* Index Page ------------------------------------------------------------------------------------ */
 
@@ -114,6 +131,20 @@ p {
     width: 65vw;
     border: solid;
     background-size: cover;
+}
+#slideshowPrev {
+    color: rgba(244, 244, 244, .9);
+    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 2vw;
+    padding: 0vw .5vw .5vw .5vw;
+    display: inline-block;
+}
+#slideshowNext {
+    color: rgba(244, 244, 244, .9);
+    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 2vw;
+    float: right;
+    padding: 0vw .5vw .5vw .5vw;
 }
 #homePageTitle {
     margin: 2vw auto 4vw 5vw;

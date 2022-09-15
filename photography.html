@@ -62,7 +62,10 @@
         <h6 id="slideshowText">
             These are some of my favorite photos.
         </h6>
-        <div id="slideshow"></div>
+        <div id="slideshow">
+            <button id="slideshowPrev" onclick="goBack('slideshow')"><</button>
+            <button id="slideshowNext" onclick="goForward('slideshow')">></button>
+        </div>
         <h1 id="photoTalk">
             But if you're talking<br>about specific places...
         </h1>
@@ -83,14 +86,20 @@
                     </h4>
                 </div>
                 <div class="col-4">
-                    <div id="smallSlideshow"></div>
+                    <div id="smallSlideshow">
+                        <button id="smallPrev" onclick="goBack('zoo')"><</button>
+                        <button id="smallNext" onclick="goForward('zoo')">></button>
+                    </div>
                 </div>
             </div>
         </div>
         <div id="japanFrame" class="container text-center">
             <div class="row">
                 <div class="col-4">
-                    <div id="smallSlideshowJapan"></div>
+                    <div id="smallSlideshowJapan">
+                        <button id="smallPrev" onclick="goBack('japan')"><</button>
+                        <button id="smallNext" onclick="goForward('japan')">></button>
+                    </div>
                 </div>
                 <div id="japanBlock" class="col-4">
                     <h2 id="indexTitle">
@@ -128,14 +137,20 @@
                     </h4>
                 </div>
                 <div class="col-4">
-                    <div id="smallSlideshowPurdue"></div>
+                    <div id="smallSlideshowPurdue">
+                        <button id="smallPrev" onclick="goBack('purdue')"><</button>
+                        <button id="smallNext" onclick="goForward('purdue')">></button>
+                    </div>
                 </div>
             </div>
         </div>
         <div id="chicagoFrame" class="container text-center">
             <div class="row">
                 <div class="col-4">
-                    <div id="smallSlideshowChicago"></div>
+                    <div id="smallSlideshowChicago">
+                        <button id="smallPrev" onclick="goBack('chicago')"><</button>
+                        <button id="smallNext" onclick="goForward('chicago')">></button>
+                    </div>
                 </div>
                 <div id="chicagoBlock" class="col-4">
                     <h2 id="indexTitle">

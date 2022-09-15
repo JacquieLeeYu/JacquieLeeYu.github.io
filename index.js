@@ -5,18 +5,28 @@ function refreshTime() {
 }
 const slideshowImagesNum = 21;
 const slideshowElement = document.getElementById('slideshow');
+const slideshowPrevctx = document.getElementById('slideshowPrev');
+const slideshowNextctx = document.getElementById('slideshowNext');
 
 const zooImagesNum = 14;
 const zooctx = document.getElementById('smallSlideshow');
+const zooPrevctx = document.getElementById('slideshowPrev');
+const zooNextctx = document.getElementById('slideshowNext');
 
 const japanImagesNum = 16;
 const japanctx = document.getElementById('smallSlideshowJapan');
+const japanPrevctx = document.getElementById('slideshowPrev');
+const japanNextctx = document.getElementById('slideshowNext');
 
 const purdueImagesNum = 16;
 const purduectx = document.getElementById('smallSlideshowPurdue');
+const purduePrevctx = document.getElementById('slideshowPrev');
+const purdueNextctx = document.getElementById('slideshowNext');
 
 const chicagoImagesNum = 11;
 const chicagoctx = document.getElementById('smallSlideshowChicago');
+const chicagoPrevctx = document.getElementById('slideshowPrev');
+const chicagoNextctx = document.getElementById('slideshowNext');
 
 var slideshowShowing;
 let zooShowing;
@@ -27,6 +37,59 @@ let chicagoShowing;
 
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+function goBack(name) {
+  if (name == "slideshow") {
+    clearInterval(slideshowShowing);
+    slideshowIndex = slideshowIndex < 2 ? slideshowImagesNum - 2 + slideshowIndex : slideshowIndex - 2;
+    renderImage("slideshow");
+    slideshowShowing = setInterval(renderImage, 8000, 'slideshow');
+  } else if (name == "zoo") {
+    clearInterval(zooShowing);
+    zooIndex = zooIndex < 2 ? zooImagesNum - 2 + zooIndex : zooIndex - 2;
+    renderImage("zoo");
+    zooShowing = setInterval(renderImage, 8000, 'zoo');
+  } else if (name == "japan") {
+    clearInterval(japanShowing);
+    japanIndex = japanIndex < 2 ? japanImagesNum - 2 + japanIndex : japanIndex - 2;
+    renderImage("japan");
+    japanShowing = setInterval(renderImage, 8000, 'japan');
+  } else if (name == "purdue") {
+    clearInterval(purdueShowing);
+    purdueIndex = purdueIndex < 2 ? purdueImagesNum - 2 + purdueIndex : purdueIndex - 2;
+    renderImage("purdue");
+    purdueShowing = setInterval(renderImage, 8000, 'purdue');
+  } else if (name == "chicago") {
+    clearInterval(chicagoShowing);
+    chicagoIndex = chicagoIndex < 2 ? chicagoImagesNum - 2 + chicagoIndex : chicagoIndex - 2;
+    renderImage("chicago");
+    chicagoShowing = setInterval(renderImage, 8000, 'chicago');
+  }
+}
+
+function goForward(name) {
+  if (name == "slideshow") {
+    clearInterval(slideshowShowing);
+    renderImage("slideshow");
+    slideshowShowing = setInterval(renderImage, 8000, 'slideshow');
+  } else if (name == "zoo") {
+    clearInterval(zooShowing);
+    renderImage("zoo");
+    zooShowing = setInterval(renderImage, 8000, 'zoo');
+  } else if (name == "japan") {
+    clearInterval(japanShowing);
+    renderImage("japan");
+    japanShowing = setInterval(renderImage, 8000, 'japan');
+  } else if (name == "purdue") {
+    clearInterval(purdueShowing);
+    renderImage("purdue");
+    purdueShowing = setInterval(renderImage, 8000, 'purdue');
+  } else if (name == "chicago") {
+    clearInterval(chicagoShowing);
+    renderImage("chicago");
+    chicagoShowing = setInterval(renderImage, 8000, 'chicago');
+  }
 }
 
 function renderImage(name) {
@@ -97,11 +160,11 @@ if ( document.URL.includes("photography") ) {
   renderImage("japan");
   renderImage("purdue");
   renderImage("chicago");
-  slideshowShowing = setInterval(renderImage, 6000, "slideshow");
-  zooShowing = setInterval(renderImage, 6000, "zoo");
-  japanShowing = setInterval(renderImage, 6000, "japan");
-  purdueShowing = setInterval(renderImage, 6000, "purdue");
-  chicagoShowing = setInterval(renderImage, 6000, "chicago");
+  slideshowShowing = setInterval(renderImage, 8000, "slideshow");
+  zooShowing = setInterval(renderImage, 8000, "zoo");
+  japanShowing = setInterval(renderImage, 8000, "japan");
+  purdueShowing = setInterval(renderImage, 8000, "purdue");
+  chicagoShowing = setInterval(renderImage, 8000, "chicago");
 } else if (slideshowShowing) {
   clearInterval(slideshowShowing);
   clearInterval(zooShowing);
