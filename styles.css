@@ -121,7 +121,7 @@ p {
 }
 #homePageTitle2 {
     margin: 5vw auto 0vw 2.5vw;
-    font-size: 7vw;
+    font-size: 9vw;
 }
 #homePageTitle3 {
     margin: 0vw 3vw 2vw 0vw;
@@ -176,7 +176,6 @@ p {
     padding-top: 5vw;
 }
 #photographyImage {
-    border: solid;
     float: left;
     width: 30vw;
     height: 24vw;
@@ -328,4 +327,46 @@ p {
     margin: 0vw auto 0vw 20vw;
     text-align: center;
     font-size: 14vw;
+}
+#visibleLink {
+    text-decoration-line: underline;
+}
+#timeMachineFrame {
+    margin: 20vw 1vw 20vw 1vw;
+}
+#timeMachineBlock {
+    margin: auto 5vw auto 3vw;
+    width: 48vw;
+}
+#timeMachineImage {
+    margin: 0vw 1vw auto auto;
+    height: 30vw;
+    border: .2vw solid lightgray;
+}
+#verseFrame {
+    margin: 20vw 1vw 20vw 1vw;
+}
+#verseBlock {
+    margin: 0vw 3vw auto 38vw;
+    width: 55vw;
+}
+#indexCaption {
+    text-align: center;
+}
+#verseImage {
+    margin: 13vw 0vw 0vw 3vw;
+    float: left;
+    height: 10vw;
+}
+#plaguePredictorFrame {
+    margin: 20vw 1vw 20vw 1vw;
+}
+#plaguePredictorBlock {
+    margin: auto 5vw auto 3vw;
+    width: 45vw;
+}
+#plaguePredictorImage {
+    margin: 2vw 1vw auto auto;
+    height: 26vw;
+    border: .3vw solid lightgray;
 }
