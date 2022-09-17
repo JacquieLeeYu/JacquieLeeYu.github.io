@@ -48,6 +48,7 @@ a:link {
 p {
     margin: 0vw;
     padding: 0vw;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 /* In multiple pages ---------------------------------------------------------------------------------- */
@@ -419,20 +420,65 @@ p {
 }
 #overview {
     font-size: 1.3vw;
-    margin: 1vw auto 0vw 23.5vw;
-    width: 53%;
+    margin: 1vw auto 0vw 20.5vw;
+    width: 60%;
+    color: dimgray;
 }
 #linkBox {
     border: .2vw solid rgb(84, 84, 84);
     margin: 2vw 25vw 2vw 25vw;
 }
 #bookmark {
-    margin: 2vw auto 1vw auto;
+    margin: 2vw auto 2vw auto;
     font-weight: bold;
-    width: 70%;
+    width: 87%;
+    padding-bottom: 1.5vw;
+    border-bottom: .1vw solid dimgray;
 }
 #foodLinks {
     font-weight: bold;
     font-size: 1.6vw;
     text-align: center;
+    margin: 1.4vw auto 2vw auto;
+}
+#cakeSection {
+    margin: 1vw 2vw 5vw 2vw;
+    padding-left: 1vw;
+    border-left: .15vw solid dimgrey;
+    display: flex;
+}
+#textLeft {
+    display: inline-block;
+    width: 35vw;
+}
+#picRight {
+    display: inline-block;
+}
+#cakeFrame {
+    /* border: .2vw solid black; */
+    margin: 20vw 2vw 20vw 2vw;
+}
+#cake {
+    font-size: 4.5vw;
+    font-weight: bold;
+    border-bottom: .15vw solid dimgrey;
+    margin-bottom: 2vw;
+}
+#cakeTitle {
+    font-size: 3vw;
+    margin: 2vw auto 1vw 1vw;
+}
+#cakePic {
+    margin: .5vw 1vw auto 0vw;
+    float: right;
+    height: 24vw;
+    border: .15vw solid dimgray;
+}
+#cakeCaption{
+    padding-left: 1vw;
+}
+#cakeText {
+    margin: 1vw 1vw 1vw 1vw;
+    font-size: 1.5vw;
+    width: 35vw;
 }
