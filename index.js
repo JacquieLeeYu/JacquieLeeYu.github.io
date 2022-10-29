@@ -8,8 +8,18 @@ const slideshowElement = document.getElementById('slideshow');
 const slideshowPrevctx = document.getElementById('slideshowPrev');
 const slideshowNextctx = document.getElementById('slideshowNext');
 
+const londonImagesNum = 28;
+const londonctx = document.getElementById('smallSlideshowLondon');
+const londonPrevctx = document.getElementById('slideshowPrev');
+const londonNextctx = document.getElementById('slideshowNext');
+
+const parisImagesNum = 12;
+const parisctx = document.getElementById('smallSlideshowParis');
+const parisPrevctx = document.getElementById('slideshowPrev');
+const parisNextctx = document.getElementById('slideshowNext');
+
 const zooImagesNum = 14;
-const zooctx = document.getElementById('smallSlideshow');
+const zooctx = document.getElementById('smallSlideshowZoo');
 const zooPrevctx = document.getElementById('slideshowPrev');
 const zooNextctx = document.getElementById('slideshowNext');
 
@@ -29,6 +39,8 @@ const chicagoPrevctx = document.getElementById('slideshowPrev');
 const chicagoNextctx = document.getElementById('slideshowNext');
 
 var slideshowShowing;
+let londonShowing;
+let parisShowing;
 let zooShowing;
 let japanShowing;
 let purdueShowing;
@@ -45,6 +57,16 @@ function goBack(name) {
     slideshowIndex = slideshowIndex < 2 ? slideshowImagesNum - 2 + slideshowIndex : slideshowIndex - 2;
     renderImage("slideshow");
     slideshowShowing = setInterval(renderImage, 8000, 'slideshow');
+  } else if (name == "london") {
+    clearInterval(londonShowing);
+    londonIndex = londonIndex < 2 ? londonImagesNum - 2 + londonIndex : londonIndex - 2;
+    renderImage("london");
+    londonShowing = setInterval(renderImage, 8000, 'london');
+  } else if (name == "paris") {
+    clearInterval(parisShowing);
+    parisIndex = parisIndex < 2 ? parisImagesNum - 2 + parisIndex : parisIndex - 2;
+    renderImage("paris");
+    parisShowing = setInterval(renderImage, 8000, 'paris');
   } else if (name == "zoo") {
     clearInterval(zooShowing);
     zooIndex = zooIndex < 2 ? zooImagesNum - 2 + zooIndex : zooIndex - 2;
@@ -73,6 +95,14 @@ function goForward(name) {
     clearInterval(slideshowShowing);
     renderImage("slideshow");
     slideshowShowing = setInterval(renderImage, 8000, 'slideshow');
+  } else if (name == "london") {
+    clearInterval(londonShowing);
+    renderImage("london");
+    londonShowing = setInterval(renderImage, 8000, 'london');
+  } else if (name == "paris") {
+    clearInterval(parisShowing);
+    renderImage("paris");
+    parisShowing = setInterval(renderImage, 8000, 'paris');
   } else if (name == "zoo") {
     clearInterval(zooShowing);
     renderImage("zoo");
@@ -102,6 +132,16 @@ function renderImage(name) {
     elem.style.backgroundImage = "url('" + currentPath +"')";
     let isLastPhoto = slideshowIndex == imgNum - 1;
     slideshowIndex = isLastPhoto ? 0 : slideshowIndex + 1;
+  } else if (name == "london") {
+    let currentPath = imgPath + londonIndex + ".jpg";
+    elem.style.backgroundImage = "url('" + currentPath +"')";
+    let isLastPhoto = londonIndex == imgNum - 1;
+    londonIndex = isLastPhoto ? 0 : londonIndex + 1;
+  } else if (name == "paris") {
+    let currentPath = imgPath + parisIndex + ".jpg";
+    elem.style.backgroundImage = "url('" + currentPath +"')";
+    let isLastPhoto = parisIndex == imgNum - 1;
+    parisIndex = isLastPhoto ? 0 : parisIndex + 1;
   } else if (name == "zoo") {
     let currentPath = imgPath + zooIndex + ".jpg";
     elem.style.backgroundImage = "url('" + currentPath +"')";
@@ -130,6 +170,12 @@ function getEssentialInfo (name) {
   if (name == "slideshow") {
     let returnArray = [slideshowElement, "./pictures/slideshow/", slideshowImagesNum];
     return returnArray;
+  } else if (name == "london") {
+    let returnArray = [londonctx, "./pictures/london/", londonImagesNum];
+    return returnArray;
+  } else if (name == "paris") {
+    let returnArray = [parisctx, "./pictures/paris/", parisImagesNum];
+    return returnArray;
   } else if (name == "zoo") {
     let returnArray = [zooctx, "./pictures/zoo/", zooImagesNum];
     return returnArray;
@@ -149,6 +195,8 @@ function getEssentialInfo (name) {
 
 
 var slideshowIndex = getRndInteger(0, slideshowImagesNum - 1);
+var londonIndex = getRndInteger(0, londonImagesNum - 1);
+var parisIndex = getRndInteger(0, parisImagesNum - 1);
 var zooIndex = getRndInteger(0, zooImagesNum - 1);
 var japanIndex = getRndInteger(0, japanImagesNum - 1);
 var purdueIndex = getRndInteger(0, purdueImagesNum - 1);
@@ -156,17 +204,23 @@ var chicagoIndex = getRndInteger(0, chicagoImagesNum - 1);
 
 if ( document.URL.includes("photography") ) {
   renderImage("slideshow");
+  renderImage("london");
+  renderImage("paris");
   renderImage("zoo");
   renderImage("japan");
   renderImage("purdue");
   renderImage("chicago");
   slideshowShowing = setInterval(renderImage, 8000, "slideshow");
+  londonShowing = setInterval(renderImage, 8000, "london");
+  parisShowing = setInterval(renderImage, 8000, "paris");
   zooShowing = setInterval(renderImage, 8000, "zoo");
   japanShowing = setInterval(renderImage, 8000, "japan");
   purdueShowing = setInterval(renderImage, 8000, "purdue");
   chicagoShowing = setInterval(renderImage, 8000, "chicago");
 } else if (slideshowShowing) {
   clearInterval(slideshowShowing);
+  clearInterval(londonShowing);
+  clearInterval(parisShowing);
   clearInterval(zooShowing);
   clearInterval(japanShowing);
   clearInterval(purdueShowing);

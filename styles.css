@@ -293,13 +293,39 @@ p {
     text-align: center;
     font-size: 4vw;
 }
+#londonFrame {
+    margin: 10vw auto 15vw auto;
+}
+#londonBlock {
+    margin: 6vw 0vw auto 2vw;
+}
+#smallSlideshowLondon {
+    border: solid;
+    margin: 15vw auto auto 9vw;
+    height: 30vw;
+    width: 48vw;
+    background-size: cover;
+}
+#parisFrame {
+    margin: 2vw auto 10vw auto;
+}
+#parisBlock {
+    margin: 6vw 0vw auto 2vw;
+}
+#smallSlideshowParis {
+    border: solid;
+    margin: 7vw auto auto 12vw;
+    height: 45vw;
+    width: 36vw;
+    background-size: cover;
+}
 #zooFrame {
     margin: 10vw auto 20vw auto;
 }
 #zooBlock {
     margin: 6vw 0vw auto 2vw;
 }
-#smallSlideshow {
+#smallSlideshowZoo {
     border: solid;
     margin: 7vw auto auto 9vw;
     height: 30vw;
