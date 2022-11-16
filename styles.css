@@ -508,3 +508,42 @@ p {
     font-size: 1.5vw;
     width: 35vw;
 }
+
+
+/* morse --------------------------------------------------------------------------------------- */
+#morseTitle {
+    text-align: center;
+    font-size: 5vw;
+}
+.smMorse {
+    width: 6vw;
+    height: 2vw;
+    background-color: #dedede;
+    box-shadow: 0 .2vw #666;
+    margin: 5vw .5vw 1vw .5vw;
+}
+.smMorse:active {
+    background-color: #d3d3d3;
+    box-shadow: 0 .1vw #666;
+    transform: translateY(.25vw);
+}
+#bigbutton {
+    background-color: #bc0606;
+    box-shadow: 0 .5vw #666;
+    width: 20vw;
+    height: 20vw;
+    border-radius: 100%;
+    margin: 1vw auto 5vw auto;
+    display: flex;
+    justify-content: center;
+
+}
+#bigbutton:active {
+    background-color: #7f0a0a;
+    box-shadow: 0 .25vw #666;
+    transform: translateY(.25vw);
+  }
+.middleMorse {
+    display: flex;
+    justify-content: center;
+}

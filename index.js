@@ -46,6 +46,53 @@ let japanShowing;
 let purdueShowing;
 let chicagoShowing;
 
+var morseTime;
+var endTime;
+var morseShortTime;
+var morseLongTime;
+var morseSpaceTime;
+var currentMorse = "";
+var morseTimeout;
+
+// O = dit, I = dah
+const morseToLetter = {
+  OI:"A",
+  IOOO:"B",
+  IOIO:"C",
+  IOO:"D",
+  O:"E",
+  OOIO:"F",
+  IIO:"G",
+  OOOO:"H",
+  OO:"I",
+  OIII:"J",
+  IOI:"K",
+  OIOO:"L",
+  II:"M",
+  IO:"N",
+  III:"O",
+  OIIO:"P",
+  IIOI:"Q",
+  OIO:"R",
+  OOO:"S",
+  I:"T",
+  OOI:"U",
+  OOOI:"V",
+  OII:"W",
+  IOOI:"X",
+  IOII:"Y",
+  IIOO:"Z",
+  OIIII:"1",
+  OOIII:"2",
+  OOOII:"3",
+  OOOOI:"4",
+  OOOOO:"5",
+  IOOOO:"6",
+  IIOOO:"7",
+  IIIOO:"8",
+  IIIIO:"9",
+  IIIII:"0",
+}
 
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -193,6 +240,67 @@ function getEssentialInfo (name) {
   }
 }
 
+
+// Searches the letter from morse
+function searchLetter() {
+  let letter = morseToLetter[currentMorse]
+  if (letter) {
+    return letter;
+  } else {
+    return "";
+  }
+}
+
+
+// Adds letter to morse message and resets the currentMorse
+function resetMorse() {
+  document.getElementById("debugLength").textContent="";
+  document.getElementById("morseMessage").textContent += searchLetter();
+  currentMorse = "";
+}
+
+// Starts a timer to measure long or short press
+function buttondown() {
+  const d = new Date();
+  morseTime = d.getTime();
+  // If at end of the letter
+  if (morseTime - endTime < 600) {
+    clearTimeout(morseTimeout);
+  }
+
+}
+
+
+// Ends the timer to measure long or short press
+function buttonup() {
+  const d = new Date();
+  endTime = d.getTime();
+  timeDifference = endTime - morseTime;
+  // currentMorse[currentMorsePos] = timeDifference;
+  // currentMorsePos += 1;
+  // document.getElementById("debugLength").textContent+="\n" + timeDifference;
+  if (timeDifference > 200) {
+    document.getElementById("debugLength").textContent+=" _ ";
+    currentMorse += "I";
+  } else {
+    document.getElementById("debugLength").textContent+=" - ";
+    currentMorse += "O";
+  }
+  morseTimeout = setTimeout(resetMorse, 700);
+}
+
+
+// Adds a space to morse message
+function makeSpace() {
+  document.getElementById("morseMessage").textContent+=" ";
+}
+
+
+// Adds a new line to morse message
+function backspace() {
+  let message = document.getElementById("morseMessage").textContent;
+  document.getElementById("morseMessage").textContent=message.slice(0, -1);
+}
 
 var slideshowIndex = getRndInteger(0, slideshowImagesNum - 1);
 var londonIndex = getRndInteger(0, londonImagesNum - 1);
