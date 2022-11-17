@@ -53,6 +53,7 @@ var morseLongTime;
 var morseSpaceTime;
 var currentMorse = "";
 var morseTimeout;
+const beep = document.getElementById("morseBeep");
 
 // O = dit, I = dah
 const morseToLetter = {
@@ -263,6 +264,7 @@ function resetMorse() {
 function buttondown() {
   const d = new Date();
   morseTime = d.getTime();
+  beep.play();
   // If at end of the letter
   if (morseTime - endTime < 600) {
     clearTimeout(morseTimeout);
@@ -276,6 +278,8 @@ function buttonup() {
   const d = new Date();
   endTime = d.getTime();
   timeDifference = endTime - morseTime;
+  beep.pause();
+  beep.currentTime = 0;
   // currentMorse[currentMorsePos] = timeDifference;
   // currentMorsePos += 1;
   // document.getElementById("debugLength").textContent+="\n" + timeDifference;
