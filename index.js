@@ -314,7 +314,17 @@ var japanIndex = getRndInteger(0, japanImagesNum - 1);
 var purdueIndex = getRndInteger(0, purdueImagesNum - 1);
 var chicagoIndex = getRndInteger(0, chicagoImagesNum - 1);
 
-if ( document.URL.includes("photography") ) {
+function unloadSlideshows() {
+  clearInterval(slideshowShowing);
+  clearInterval(londonShowing);
+  clearInterval(parisShowing);
+  clearInterval(zooShowing);
+  clearInterval(japanShowing);
+  clearInterval(purdueShowing);
+  clearInterval(chicagoShowing);
+}
+
+function loadSlideshows() {
   renderImage("slideshow");
   renderImage("london");
   renderImage("paris");
@@ -329,15 +339,9 @@ if ( document.URL.includes("photography") ) {
   japanShowing = setInterval(renderImage, 8000, "japan");
   purdueShowing = setInterval(renderImage, 8000, "purdue");
   chicagoShowing = setInterval(renderImage, 8000, "chicago");
-} else if (slideshowShowing) {
-  clearInterval(slideshowShowing);
-  clearInterval(londonShowing);
-  clearInterval(parisShowing);
-  clearInterval(zooShowing);
-  clearInterval(japanShowing);
-  clearInterval(purdueShowing);
-  clearInterval(chicagoShowing);
 }
+
+// window.addEventListener("pageshow", G);
 
 let timeShowing;
 if (document.URL.includes("index.html") || !document.URL.endsWith(".html")){
