@@ -163,6 +163,7 @@ p {
 }
 #bubbleTalk {
     margin: 20vw auto 20vw auto;
+    width: 56vw;
     text-align: center;
     font-size: 4vw;
 }
@@ -186,7 +187,7 @@ p {
     border-left: hidden;
     border-bottom: hidden;
 }
-#indexLetter {
+.indexLetter {
     text-align: center;
     border-bottom: .2vw solid rgb(84, 84, 84);
     padding-bottom: 2vw;

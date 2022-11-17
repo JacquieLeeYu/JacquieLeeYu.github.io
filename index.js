@@ -46,6 +46,7 @@ let japanShowing;
 let purdueShowing;
 let chicagoShowing;
 
+const d = new Date();
 var morseTime;
 var endTime;
 var morseShortTime;
@@ -262,7 +263,6 @@ function resetMorse() {
 
 // Starts a timer to measure long or short press
 function buttondown() {
-  const d = new Date();
   morseTime = d.getTime();
   beep.play();
   // If at end of the letter
@@ -275,7 +275,6 @@ function buttondown() {
 
 // Ends the timer to measure long or short press
 function buttonup() {
-  const d = new Date();
   endTime = d.getTime();
   timeDifference = endTime - morseTime;
   beep.pause();
@@ -341,7 +340,31 @@ function loadSlideshows() {
   chicagoShowing = setInterval(renderImage, 8000, "chicago");
 }
 
-// window.addEventListener("pageshow", G);
+
+// Checks if the user has been to the main page before
+function helloMessage() {
+  let numVisits = localStorage.numVisits;
+  let firstVisitDate = localStorage.firstVisitDate;
+  if (!numVisits || numVisits == 0 || !firstVisitDate) {
+    localStorage.firstVisitDate = d.getTime();
+    document.getElementById("homePageTitle").textContent="Hey there!";
+    document.getElementById("homePageTitle2").textContent="My name is";
+    document.getElementById("homePageTitle3").textContent="Jacquie!";
+    localStorage.numVisits = 1;
+    document.getElementById("bubbleTalk").textContent=
+    ("It's nice to meet you! Let's get to know each other better!");
+    document.getElementById("projectsLetter").textContent=
+    "I've made some projects before, and I think they're pretty cool!";
+    document.getElementById("photographyLetter").textContent=
+    "I also like taking a lot of pictures! I enjoy taking pictures of animals and nature the most!";
+    document.getElementById("bakingLetter").textContent=
+    "Baking is really fun, too! My favorite dessert is tiramisu, though I can't ignore a good fluffy milk bread either!";
+    
+  } else {
+    localStorage.numVisits = Number(localStorage.numVisits) + 1;
+  }
+}
+
 
 let timeShowing;
 if (document.URL.includes("index.html") || !document.URL.endsWith(".html")){
