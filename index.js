@@ -46,14 +46,14 @@ let japanShowing;
 let purdueShowing;
 let chicagoShowing;
 
-const d = new Date();
 var morseTime;
 var endTime;
-var morseShortTime;
-var morseLongTime;
-var morseSpaceTime;
+var morseShortTime = 200;
 var currentMorse = "";
 var morseTimeout;
+var lettersCorrect = 0;
+var lettersLeft = 0;
+var gameStart;
 const beep = document.getElementById("morseBeep");
 
 // O = dit, I = dah
@@ -255,18 +255,49 @@ function searchLetter() {
 
 
 // Adds letter to morse message and resets the currentMorse
-function resetMorse() {
+async function resetMorse() {
   document.getElementById("debugLength").textContent="";
-  document.getElementById("morseMessage").textContent += searchLetter();
+  let letter = searchLetter();
+  if (lettersLeft > 0) {
+    if (document.getElementById("morsePrompt").textContent == letter) {
+      lettersCorrect += 1;
+      document.getElementById("morseMessage").textContent = letter;
+      document.getElementById("morseMessage").style.color = 'green';
+      document.getElementById("morsePrompt").textContent="Correct!";
+      await new Promise(resolve => setTimeout(resolve, 700));
+      lettersLeft -= 1;
+      if (lettersLeft == 0) {
+        calculateScore();
+      } else {
+        promptLetter();
+      }
+    } else {
+      document.getElementById("morseMessage").textContent = letter;
+      document.getElementById("morseMessage").style.color = 'red';
+      document.getElementById("morsePrompt").textContent="Incorrect...";
+      await new Promise(resolve => setTimeout(resolve, 700));
+      lettersLeft -= 1;
+      if (lettersLeft == 0) {
+        calculateScore();
+      } else {
+        promptLetter();
+      }
+    }
+  } else {
+    document.getElementById("morsePrompt").textContent="";
+    document.getElementById("morseMessage").textContent += letter;
+  }
   currentMorse = "";
 }
 
+
 // Starts a timer to measure long or short press
 function buttondown() {
+  const d = new Date();
   morseTime = d.getTime();
   beep.play();
   // If at end of the letter
-  if (morseTime - endTime < 600) {
+  if (morseTime - endTime < morseShortTime*3) {
     clearTimeout(morseTimeout);
   }
 
@@ -275,6 +306,7 @@ function buttondown() {
 
 // Ends the timer to measure long or short press
 function buttonup() {
+  const d = new Date();
   endTime = d.getTime();
   timeDifference = endTime - morseTime;
   beep.pause();
@@ -282,14 +314,14 @@ function buttonup() {
   // currentMorse[currentMorsePos] = timeDifference;
   // currentMorsePos += 1;
   // document.getElementById("debugLength").textContent+="\n" + timeDifference;
-  if (timeDifference > 200) {
+  if (timeDifference > morseShortTime) {
     document.getElementById("debugLength").textContent+=" _ ";
     currentMorse += "I";
   } else {
     document.getElementById("debugLength").textContent+=" - ";
     currentMorse += "O";
   }
-  morseTimeout = setTimeout(resetMorse, 700);
+  morseTimeout = setTimeout(resetMorse, morseShortTime*7);
 }
 
 
@@ -305,6 +337,83 @@ function backspace() {
   document.getElementById("morseMessage").textContent=message.slice(0, -1);
 }
 
+
+// Updates morseSlider
+function updateMorseSlider() {
+  var slider = document.getElementById("morseSlider");
+  let sliderMessage = "Dit to Dah Threshold: " + slider.value + "ms";
+  document.getElementById("sliderValue").textContent=sliderMessage;
+  morseShortTime = Number(slider.value);
+}
+
+// Loads morse page data
+function loadMorseData() {
+  let hiScore = localStorage.morseHighScore;
+  if (!hiScore) {
+    document.getElementById("morseHighScore").textContent="High Score: 0";
+    localStorage.morseHighScore = 0;
+  } else {
+    hiScore = "High Score: " + hiScore;
+    document.getElementById("morseHighScore").textContent=hiScore;
+  }
+}
+
+
+// Prompts the letter onto the morse game board
+function promptLetter() {
+  document.getElementById("morseMessage").textContent="";
+  let index = getRndInteger(0, 25);
+  let letter = morseToLetter[Object.keys(morseToLetter)[index]];
+  document.getElementById("morsePrompt").textContent=letter;
+}
+
+
+// Launches morse letter game
+async function letterGame() {
+  lettersLeft = 10;
+  lettersCorrect = 0;
+  document.getElementById("morseMessage").textContent="";
+  document.getElementById("morsePrompt").textContent="Game Starting In...";
+  // document.getElementById("morseHighScore").textContent="Time: 00m 00s";
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  document.getElementById("morsePrompt").textContent="3...";
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  document.getElementById("morsePrompt").textContent="2...";
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  document.getElementById("morsePrompt").textContent="1...";
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  const d = new Date();
+  gameStart = d.getTime();
+  promptLetter();
+}
+
+
+// Calculates game score
+function calculateScore() {
+  const d = new Date();
+  let endTime = d.getTime();
+  let score = (lettersCorrect*125) + Math.round(5000000/(endTime-gameStart));
+  document.getElementById("morsePrompt").textContent="Your Score Is: " + score;
+  if (!localStorage.morseHighScore || score > Number(localStorage.morseHighScore)) {
+    document.getElementById("morseHighScore").textContent="High Score: " + score;
+    localStorage.morseHighScore = score;
+  }
+  document.getElementById("morseMessage").style.color = 'black';
+  document.getElementById("morseMessage").textContent="";
+  
+}
+
+
+// Saves morse page data
+function saveMorseData() {
+  // not sure what to put in yet, but it's here in case I need it
+}
+
+
+// --------------------------------------------------------------------------------------------------------
+
+
 var slideshowIndex = getRndInteger(0, slideshowImagesNum - 1);
 var londonIndex = getRndInteger(0, londonImagesNum - 1);
 var parisIndex = getRndInteger(0, parisImagesNum - 1);
@@ -313,6 +422,8 @@ var japanIndex = getRndInteger(0, japanImagesNum - 1);
 var purdueIndex = getRndInteger(0, purdueImagesNum - 1);
 var chicagoIndex = getRndInteger(0, chicagoImagesNum - 1);
 
+
+// Unloads the slideshows in photography page
 function unloadSlideshows() {
   clearInterval(slideshowShowing);
   clearInterval(londonShowing);
@@ -323,6 +434,8 @@ function unloadSlideshows() {
   clearInterval(chicagoShowing);
 }
 
+
+// Loads the slideshows in photography page
 function loadSlideshows() {
   renderImage("slideshow");
   renderImage("london");
@@ -346,6 +459,7 @@ function helloMessage() {
   let numVisits = localStorage.numVisits;
   let firstVisitDate = localStorage.firstVisitDate;
   if (!numVisits || numVisits == 0 || !firstVisitDate) {
+    const d = new Date();
     localStorage.firstVisitDate = d.getTime();
     document.getElementById("homePageTitle").textContent="Hey there!";
     document.getElementById("homePageTitle2").textContent="My name is";
