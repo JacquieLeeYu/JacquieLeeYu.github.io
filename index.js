@@ -267,6 +267,7 @@ async function resetMorse() {
       await new Promise(resolve => setTimeout(resolve, 700));
       lettersLeft -= 1;
       if (lettersLeft == 0) {
+        document.getElementById("morseSheet").style.display = "initial";
         calculateScore();
       } else {
         promptLetter();
@@ -278,6 +279,7 @@ async function resetMorse() {
       await new Promise(resolve => setTimeout(resolve, 700));
       lettersLeft -= 1;
       if (lettersLeft == 0) {
+        document.getElementById("morseSheet").style.display = "initial";
         calculateScore();
       } else {
         promptLetter();
@@ -321,7 +323,7 @@ function buttonup() {
     document.getElementById("debugLength").textContent+=" - ";
     currentMorse += "O";
   }
-  morseTimeout = setTimeout(resetMorse, morseShortTime*7);
+  morseTimeout = setTimeout(resetMorse, morseShortTime*3);
 }
 
 
