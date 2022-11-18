@@ -594,6 +594,16 @@ cursor: pointer;
 #gameButtons {
     margin: 4vw auto auto auto;
 }
+.middleSingle {
+    text-align: center;
+    display: block;
+}
+#morseSheetTitle {
+    margin: 3vw auto 1vw auto;
+}
+#morseSheet {
+    margin: 1vw auto 2vw auto;
+}
 #morseEndMessage {
     margin: 20vw auto auto auto;
 }

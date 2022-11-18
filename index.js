@@ -344,6 +344,7 @@ function updateMorseSlider() {
   let sliderMessage = "Dit to Dah Threshold: " + slider.value + "ms";
   document.getElementById("sliderValue").textContent=sliderMessage;
   morseShortTime = Number(slider.value);
+  localStorage.sliderValue = morseShortTime;
 }
 
 // Loads morse page data
@@ -355,6 +356,15 @@ function loadMorseData() {
   } else {
     hiScore = "High Score: " + hiScore;
     document.getElementById("morseHighScore").textContent=hiScore;
+  }
+  let sliderValue = localStorage.sliderValue;
+  if (!sliderValue) {
+    localStorage.sliderValue = morseShortTime;
+  } else {
+    morseShortTime = sliderValue;
+    document.getElementById("morseSlider").value = morseShortTime;
+    let sliderMessage = "Dit to Dah Threshold: " + morseShortTime + "ms";
+    document.getElementById("sliderValue").textContent=sliderMessage;
   }
 }
 
@@ -370,6 +380,7 @@ function promptLetter() {
 
 // Launches morse letter game
 async function letterGame() {
+  document.getElementById("morseSheet").style.filter = 'blur(20px)';
   lettersLeft = 10;
   lettersCorrect = 0;
   document.getElementById("morseMessage").textContent="";
