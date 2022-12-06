@@ -591,9 +591,6 @@ cursor: pointer;
     display: flex;
     justify-content: center;
 }
-#gameButtons {
-    margin: 4vw auto auto auto;
-}
 .middleSingle {
     text-align: center;
     display: block;

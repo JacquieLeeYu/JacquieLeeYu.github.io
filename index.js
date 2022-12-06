@@ -54,6 +54,11 @@ var morseTimeout;
 var lettersCorrect = 0;
 var lettersLeft = 0;
 var gameStart;
+// Modes: NONE, LTSL, STLL, LTST, STLT, LTSGAME, STLGAME
+var mode = "NONE";
+var letterArr = [];
+var letter = "";
+var livesLeft = 3;
 const beep = document.getElementById("morseBeep");
 
 // O = dit, I = dah
@@ -96,6 +101,54 @@ const morseToLetter = {
   IIIII:"0",
 }
 
+var score = {
+  A: 0,
+  B: 0,
+  C: 0,
+  D: 0,
+  E: 0,
+  F: 0,
+  G: 0,
+  H: 0,
+  I: 0,
+  J: 0,
+  K: 0,
+  L: 0,
+  M: 0,
+  N: 0,
+  O: 0,
+  P: 0,
+  Q: 0,
+  R: 0,
+  S: 0,
+  T: 0,
+  U: 0,
+  V: 0,
+  W: 0,
+  X: 0,
+  Y: 0,
+  Z: 0,
+  0: 0,
+  1: 0,
+  2: 0,
+  3: 0,
+  4: 0,
+  5: 0,
+  6: 0,
+  7: 0,
+  8: 0,
+  9: 0,
+}
+
+  const batch1 = ["E","T","I","M","N","A"];
+  const batch2 = ["S","O","R","K","W","D"];
+  const batch3 = ["G","P","Z","U","V"];
+  const batch4 = ["F","L","B","H","X"];
+  const batch5 = ["Q","Y","J","C"];
+  const batch6 = ["0","1","2","3","4","5","6","7","8","9"];
+
+
+// Gives a random interger of provided max and min values, inclusive
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
@@ -254,37 +307,41 @@ function searchLetter() {
 }
 
 
+// Checks if letters game continues
+async function continueLGame() {
+  if (document.getElementById("morsePrompt").textContent == letter) {
+    lettersCorrect += 1;
+    document.getElementById("morseMessage").textContent = letter;
+    document.getElementById("morseMessage").style.color = 'green';
+    document.getElementById("morsePrompt").textContent="Correct!";
+  } else {
+    document.getElementById("morseMessage").textContent = letter;
+    document.getElementById("morseMessage").style.color = 'red';
+    document.getElementById("morsePrompt").textContent="Incorrect...";
+  }
+  letter = "";
+  await new Promise(resolve => setTimeout(resolve, 700));
+  lettersLeft -= 1;
+  if (lettersLeft == 0) {
+    document.getElementById("morseSheet").style.filter = 'blur(0px)';
+    mode = "NONE";
+    calculateScore();
+  } else {
+    promptLetter(morseToLetter);
+  }
+}
+
 // Adds letter to morse message and resets the currentMorse
 async function resetMorse() {
   document.getElementById("debugLength").textContent="";
-  let letter = searchLetter();
-  if (lettersLeft > 0) {
-    if (document.getElementById("morsePrompt").textContent == letter) {
-      lettersCorrect += 1;
-      document.getElementById("morseMessage").textContent = letter;
-      document.getElementById("morseMessage").style.color = 'green';
-      document.getElementById("morsePrompt").textContent="Correct!";
-      await new Promise(resolve => setTimeout(resolve, 700));
-      lettersLeft -= 1;
-      if (lettersLeft == 0) {
-        document.getElementById("morseSheet").style.display = "initial";
-        calculateScore();
-      } else {
-        promptLetter();
-      }
-    } else {
-      document.getElementById("morseMessage").textContent = letter;
-      document.getElementById("morseMessage").style.color = 'red';
-      document.getElementById("morsePrompt").textContent="Incorrect...";
-      await new Promise(resolve => setTimeout(resolve, 700));
-      lettersLeft -= 1;
-      if (lettersLeft == 0) {
-        document.getElementById("morseSheet").style.display = "initial";
-        calculateScore();
-      } else {
-        promptLetter();
-      }
-    }
+  letter = searchLetter();
+  if (mode == "LTSGAME") {
+    continueLGame();
+  } else if (mode == "LTST") {
+    lTST();
+  } else if (mode == "LTSL") {
+    lTSL();
+
   } else {
     document.getElementById("morsePrompt").textContent="";
     document.getElementById("morseMessage").textContent += letter;
@@ -372,22 +429,27 @@ function loadMorseData() {
 
 
 // Prompts the letter onto the morse game board
-function promptLetter() {
+function promptLetter(arr) {
   document.getElementById("morseMessage").textContent="";
-  let index = getRndInteger(0, 25);
-  let letter = morseToLetter[Object.keys(morseToLetter)[index]];
-  document.getElementById("morsePrompt").textContent=letter;
+  let letterShow = "";
+  if (mode == "LTSGAME" || mode == "STLGAME") {
+    let index = getRndInteger(0, Object.keys(arr).length - 1);
+    letterShow = arr[Object.keys(arr)[index]];
+  } else {
+    let index = getRndInteger(0, arr.length - 1);
+    letterShow = arr[index];
+  }
+  document.getElementById("morsePrompt").textContent=letterShow;
 }
 
 
 // Launches morse letter game
 async function letterGame() {
   document.getElementById("morseSheet").style.filter = 'blur(20px)';
-  lettersLeft = 10;
+  lettersLeft = 15;
   lettersCorrect = 0;
   document.getElementById("morseMessage").textContent="";
   document.getElementById("morsePrompt").textContent="Game Starting In...";
-  // document.getElementById("morseHighScore").textContent="Time: 00m 00s";
   await new Promise(resolve => setTimeout(resolve, 1000));
   document.getElementById("morsePrompt").textContent="3...";
   await new Promise(resolve => setTimeout(resolve, 1000));
@@ -398,7 +460,8 @@ async function letterGame() {
 
   const d = new Date();
   gameStart = d.getTime();
-  promptLetter();
+  mode = "LTSGAME"
+  promptLetter(morseToLetter);
 }
 
 
@@ -421,6 +484,212 @@ function calculateScore() {
 // Saves morse page data
 function saveMorseData() {
   // not sure what to put in yet, but it's here in case I need it
+}
+
+
+// Plays the morse of the addressed letter key
+async function playBeep(morse) {
+  for (i = 0; i<morse.length; i++) {
+    if (morse[i] == "O") {
+      beep.play();
+      await new Promise(resolve => setTimeout(resolve, morseShortTime));
+      beep.pause();
+      await new Promise(resolve => setTimeout(resolve, morseShortTime));
+    } else {
+      beep.play();
+      await new Promise(resolve => setTimeout(resolve, morseShortTime*3));
+      beep.pause();
+      await new Promise(resolve => setTimeout(resolve, morseShortTime));
+    }
+  }
+}
+
+
+// Starts letter to sound lesson
+async function lTSL(num) {
+  // check if this is the start of lTSL calls
+  if (mode == "LTSL") {
+    // since it's after a prompt, check if letter is the same as prompted letter
+    if (document.getElementById("morsePrompt").textContent == letter) {
+      // says is correct and pauses
+      document.getElementById("morsePrompt").textContent = "Correct!";
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      score[letter] += 1;
+      // If score is over 5, remove the letter from being prompted
+      if (score[letter] > 5) {
+        letterArr.splice(letterArr.indexOf(letter),1);
+      }
+    } else {
+      score[letter] -= 1;
+      document.getElementById("morsePrompt").textContent = "Incorrect...";
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      // min score bottoms at 0
+      if (score[letter] < 0) {
+        score[letter] = 0;
+      }
+    }
+  } else {
+    mode = "LTSL";
+    if (num == 1) {
+      document.getElementById("morsePrompt").textContent="Learning letters: E, T, I, M, N, A";
+    } else if (num == 2) {
+      document.getElementById("morsePrompt").textContent="Learning letters: S, O, R, K, W, D";
+    } else if (num == 3) {
+      document.getElementById("morsePrompt").textContent="Learning letters: G, P, Z, U, V";
+    } else if (num == 4) {
+      document.getElementById("morsePrompt").textContent="Learning letters: F, L, B, H, X";
+    } else if (num == 5) {
+      document.getElementById("morsePrompt").textContent="Learning letters: Q, Y, J, C";
+    } else if (num == 6) {
+      document.getElementById("morsePrompt").textContent="Learning numbers: 0-9";
+    }
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    document.getElementById("morsePrompt").textContent="";
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+  // Check if there's any letters left to prompt
+  if (letterArr.length > 0) {
+    // prompt letter (plus sound if score < 2)
+    promptLetter(letterArr);
+    let letterPrompt = document.getElementById("morsePrompt").textContent;
+    if (score[letterPrompt] < 2) {
+      // getting the key by its value
+      let letterMorse = Object.keys(morseToLetter).find(key => morseToLetter[key] === letterPrompt);
+      playBeep(letterMorse);
+    }
+  } else {
+    // end when all scores are 5+
+    document.getElementById("morsePrompt").textContent="Congratulations! Lesson Complete!";
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    document.getElementById("morsePrompt").textContent="";
+    mode = "NONE";
+  }
+}
+
+
+// Starts letter to sound lesson #1: E, T, I, M, N, A
+function lToS(id) {
+  let num;
+  if (id == "lts1") {
+    letterArr = batch1;
+    num = 1;
+  } else if (id == "lts2") {
+    letterArr = batch2;
+    num = 2;
+  } else if (id == "lts3") {
+    letterArr = batch3;
+    num = 3;
+  } else if (id == "lts4") {
+    letterArr = batch4;
+    num = 4;
+  } else if (id == "lts5") {
+    letterArr = batch5;
+    num = 5;
+  } else if (id == "lts5") {
+    letterArr = batch6;
+    num = 6;
+  }
+  // Reset corresponding letters' scores to 0
+  for (i = 0; i < letterArr.length ; i++){
+    score[letterArr[i]] = 0;
+  }
+  // Start prompting letters
+  lTSL(num);
+}
+
+
+// Starts letters to sound test
+async function lTST(num) {
+  // check if this is the start of lTST calls
+  if (mode == "LTST") {
+    // since it's after a prompt, check if letter is the same as prompted letter
+    if (document.getElementById("morsePrompt").textContent == letter) {
+      // says is correct and pauses
+      document.getElementById("morsePrompt").textContent = "Correct!";
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      score[letter] += 1;
+      // If score is over 2, remove the letter from being prompted
+      if (score[letter] >= 2) {
+        letterArr.splice(letterArr.indexOf(letter),1);
+      }
+    } else {
+      score[letter] = 0;
+      livesLeft -= 1;
+      if (livesLeft == 2) {
+        document.getElementById("morsePrompt").textContent="Incorrect! 2 lives left!";
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      } else if (livesLeft == 1) {
+        document.getElementById("morsePrompt").textContent="Incorrect! Last life!";
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+    }
+  } else {
+    mode = "LTST";
+    livesLeft = 3;
+    if (num == 1) {
+      document.getElementById("morsePrompt").textContent="Testing letters: E, T, I, M, N, A";
+    } else if (num == 2) {
+      document.getElementById("morsePrompt").textContent="Testing letters: S, O, R, K, W, D";
+    } else if (num == 3) {
+      document.getElementById("morsePrompt").textContent="Testing letters: G, P, Z, U, V";
+    } else if (num == 4) {
+      document.getElementById("morsePrompt").textContent="Testing letters: F, L, B, H, X";
+    } else if (num == 5) {
+      document.getElementById("morsePrompt").textContent="Testing letters: Q, Y, J, C";
+    } else if (num == 6) {
+      document.getElementById("morsePrompt").textContent="Testing numbers: 0-9";
+    }
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    document.getElementById("morsePrompt").textContent="";
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+  // Check if there's any letters left to prompt
+  if (letterArr.length > 0 && livesLeft > 0) {
+    promptLetter(letterArr);
+  } else if (livesLeft == 0) {
+    document.getElementById("morsePrompt").textContent="No lives left... Better luck next time!";
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    document.getElementById("morsePrompt").textContent="";
+    mode = "NONE";
+  } else {
+    // end when all scores are 2+
+    document.getElementById("morsePrompt").textContent="Congratulations! You've passed the test!";
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    document.getElementById("morsePrompt").textContent="";
+    mode = "NONE";
+  }
+}
+
+
+// Tests the batches of letters learned
+function lToSTest(id) {
+  let num;
+  if (id == "ltst1") {
+    letterArr = batch1;
+    num = 1;
+  } else if (id == "ltst2") {
+    letterArr = batch2;
+    num = 2;
+  } else if (id == "ltst3") {
+    letterArr = batch3;
+    num = 3;
+  } else if (id == "ltst4") {
+    letterArr = batch4;
+    num = 4;
+  } else if (id == "ltst5") {
+    letterArr = batch5;
+    num = 5;
+  } else if (id == "ltst6") {
+    letterArr = batch6;
+    num = 6;
+  }
+  // Reset corresponding letters' scores to 0
+  for (i = 0; i < letterArr.length ; i++){
+    score[letterArr[i]] = 0;
+  }
+  // Start prompting letters
+  lTST(num);
 }
 
 

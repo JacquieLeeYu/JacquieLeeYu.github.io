@@ -14,6 +14,24 @@
                 <input oninput="updateMorseSlider()" type="range" min="50" max="300" value="200" class="slider" id="morseSlider">
             </div>
             <h3 id="morseHighScore" class="text-end">High Score:</h3>
+            <div id="lToSLearn" class="text-center">
+                <h2> Sending Morse Practice</h2>
+                <button id="lts1" class="smMorse" onclick="lToS(this.id)">Learn #1:<br>E, T, I, M, N ,A</button>
+                <button id="lts2" class="smMorse" onclick="lToS(this.id)">Learn #2:<br>S, O, R, K, W, D</button>
+                <button id="lts3" class="smMorse" onclick="lToS(this.id)">Learn #3:<br>G, P, Z, U, V</button>
+                <button id="lts4" class="smMorse" onclick="lToS(this.id)">Learn #4:<br>F, L, B, H, X</button>
+                <button id="lts5" class="smMorse" onclick="lToS(this.id)">Learn #5:<br>Q, Y, J, C</button>
+                <button id="lts6" class="smMorse" onclick="lToS(this.id)">Learn #6:<br>0-9</button>
+            </div>
+            <div id="lToSTest" class="middleMorse">
+                <button id="ltst1" class="smMorse" onclick="lToSTest(this.id)">Test #1:<br>E, T, I, M, N ,A</button>
+                <button id="ltst2" class="smMorse" onclick="lToSTest(this.id)">Test #2:<br>S, O, R, K, W, D</button>
+                <button id="ltst3" class="smMorse" onclick="lToSTest(this.id)">Test #3:<br>G, P, Z, U, V</button>
+                <button id="ltst4" class="smMorse" onclick="lToSTest(this.id)">Test #4:<br>F, L, B, H, X</button>
+                <button id="ltst5" class="smMorse" onclick="lToSTest(this.id)">Test #5:<br>Q, Y, J, C</button>
+                <button id="ltst6" class="smMorse" onclick="lToSTest(this.id)">Test #6:<br>0-9</button>
+                <button class="smMorse" onclick="letterGame()">Test All</button>
+            </div>
             <h3 id="morsePrompt" class="text-center"></h3>
             <div class="text-center">
                 <button class="smMorse" onclick="makeSpace()">Add Space</button>
@@ -28,9 +46,6 @@
                 <source src="Beep.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
-            <div id="gameButtons" class="middleMorse">
-                <button class="smMorse" onclick="letterGame()">Letters Game</button>
-            </div>
             <div>
                 <h1 id="morseSheetTitle" class="middleSingle">
                     Morse Code Alphabet and Numbers
