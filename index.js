@@ -384,6 +384,12 @@ function buttonup() {
 }
 
 
+// Takes in letter from STL input
+function morseInput() {
+  document.getElementById("morseHighScore").textContent="inputtedmorse";
+}
+
+
 // Adds a space to morse message
 function makeSpace() {
   document.getElementById("morseMessage").textContent+=" ";
@@ -410,10 +416,10 @@ function updateMorseSlider() {
 function loadMorseData() {
   let hiScore = localStorage.morseHighScore;
   if (!hiScore) {
-    document.getElementById("morseHighScore").textContent="High Score: 0";
+    document.getElementById("morseHighScore").textContent="Letters High Score: 0";
     localStorage.morseHighScore = 0;
   } else {
-    hiScore = "High Score: " + hiScore;
+    hiScore = "Letters High Score: " + hiScore;
     document.getElementById("morseHighScore").textContent=hiScore;
   }
   let sliderValue = localStorage.sliderValue;
@@ -444,7 +450,7 @@ function promptLetter(arr) {
 
 
 // Launches morse letter game
-async function letterGame() {
+async function lToSLetters() {
   document.getElementById("morseSheet").style.filter = 'blur(20px)';
   lettersLeft = 15;
   lettersCorrect = 0;
@@ -472,7 +478,7 @@ function calculateScore() {
   let score = (lettersCorrect*125) + Math.round(5000000/(endTime-gameStart));
   document.getElementById("morsePrompt").textContent="Your Score Is: " + score;
   if (!localStorage.morseHighScore || score > Number(localStorage.morseHighScore)) {
-    document.getElementById("morseHighScore").textContent="High Score: " + score;
+    document.getElementById("morseHighScore").textContent="Letters High Score: " + score;
     localStorage.morseHighScore = score;
   }
   document.getElementById("morseMessage").style.color = 'black';
@@ -484,6 +490,12 @@ function calculateScore() {
 // Saves morse page data
 function saveMorseData() {
   // not sure what to put in yet, but it's here in case I need it
+}
+
+
+// Finds morse required to playBeep morse
+function findBeep() {
+
 }
 
 

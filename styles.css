@@ -269,7 +269,7 @@ p {
     text-align: right;
 }
 #photographyTextBlock {
-    margin: 5vw 10vw 2vw 50vw;
+    margin: 6vw 10vw 2vw 50vw;
     text-align: center;
 }
 #imageText {
@@ -277,9 +277,6 @@ p {
 }
 #imageTextBotDiv {
     vertical-align: top;
-}
-#imageTextBot {
-    font-size: 2vw;
 }
 #imageTextBig {
     font-size: 3vw;
@@ -290,7 +287,7 @@ p {
     font-size: 3vw;
 }
 #photoTalk {
-    margin: 2vw auto 2vw auto;
+    margin: 7vw auto 2vw auto;
     text-align: center;
     font-size: 4vw;
 }
@@ -603,4 +600,18 @@ cursor: pointer;
 }
 #morseEndMessage {
     margin: 20vw auto auto auto;
+}
+#morseInput {
+    margin: 10vw auto 10vw auto;
+}
+
+
+/* ------------------------------------------------------------------------------------------------- */
+#pphotographyGrid {
+    margin: 8vw auto 8vw auto;
+    display: flex;
+}
+.pphotographyPhoto {
+    margin: 1vw 1vw 1vw 1vw;
+    width: 39vw;
 }
